@@ -1,26 +1,17 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
-</template>
+<script setup>
+import CarouselBlock from "./components/CarouselBlock.vue";
 
-<script>
-import HelloWorld from "./components/HelloWorld.vue";
-
-export default {
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-};
+const slides = [
+  new URL("./assets/images/minesweeper.png", import.meta.url).href,
+  new URL("./assets/images/saga.png", import.meta.url).href,
+  new URL("./assets/images/ah-chocoladepasta-puur.jpg", import.meta.url).href,
+  new URL("./assets/images/minesweeper2.png", import.meta.url).href,
+  new URL("./assets/images/saga.png", import.meta.url).href,
+];
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <CarouselBlock :slides="slides"></CarouselBlock>
+</template>
+
+<style lang="scss"></style>
