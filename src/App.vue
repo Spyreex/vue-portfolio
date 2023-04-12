@@ -12,6 +12,7 @@ const slides = [
 
 <template>
   <CarouselBlock :slides="slides"></CarouselBlock>
+  <h1>arbge</h1>
 </template>
 
 <style lang="scss"></style>

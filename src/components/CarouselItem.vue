@@ -7,12 +7,16 @@ const props = defineProps({
   index: Number,
   total: Number,
 });
+
+function link() {
+  console.log("ss");
+}
 </script>
 
 <template>
   <Transition :name="`slide-in-${props.total}-${props.index}`">
     <div class="carousel-item" v-show="currentSlide === index">
-      <img :src="props.slide" />
+      <img :src="props.slide" @click="link" />
     </div>
   </Transition>
 </template>
@@ -30,11 +34,12 @@ div.carousel-item {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
 }
 
 // starting position of the carousel
-$start: 1;
+$start: 0.5;
 
 // $tot for slide count, $j for current slider (min: 2, max: 20)
 @for $tot from 2 through 20 {
