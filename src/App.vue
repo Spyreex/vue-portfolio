@@ -2,16 +2,17 @@
 import CarouselBlock from "@/components/CarouselBlock.vue";
 
 const slides = [
-  new URL(`@/assets/images/minesweeper.png`, import.meta.url).href,
+  new URL(`@/assets/images/chickensweeper.png`, import.meta.url).href,
   new URL(`@/assets/images/saga.png`, import.meta.url).href,
-  new URL(`@/assets/images/ah-chocoladepasta-puur.jpg`, import.meta.url).href,
-  new URL(`@/assets/images/minesweeper2.png`, import.meta.url).href,
-  new URL("@/assets/images/saga.png", import.meta.url).href,
+  new URL(`@/assets/images/saga.png`, import.meta.url).href,
+  new URL(`@/assets/images/saga.png`, import.meta.url).href,
 ];
+
+const defaultImage = new URL(`@/assets/images/black.png`, import.meta.url).href;
 </script>
 
 <template>
-  <CarouselBlock :slides="slides"></CarouselBlock>
+  <CarouselBlock :slides="slides" :default="defaultImage"></CarouselBlock>
   <h1>arbge</h1>
 </template>
 
