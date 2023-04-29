@@ -2,21 +2,20 @@
 import { defineProps } from "vue";
 
 const props = defineProps({
-  slide: String,
+  slide: Object,
   currentSlide: Number,
   index: Number,
   total: Number,
 });
-
-function link() {
-  console.log("ss");
-}
 </script>
 
 <template>
   <Transition :name="`slide-in-${props.total}-${props.index}`">
     <div class="carousel-item" v-show="currentSlide === index">
-      <img :src="props.slide" @click="link" />
+      <a :href="`#${props.slide.link}`">
+        <img class="border" src="@/assets/images/fotoborder.png" alt="" />
+        <img class="main-image" :src="props.slide.url" />
+      </a>
     </div>
   </Transition>
 </template>
@@ -30,17 +29,40 @@ div.carousel-item {
   left: 0;
   right: 0;
   bottom: 0;
-  img {
+  img.border {
+    position: absolute;
+    height: 95%;
+    width: 95%;
+    top: 2.5%;
+    left: 2.5%;
+    z-index: 2;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  img.main-image {
+    position: absolute;
     object-fit: cover;
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
+    width: 95%;
+    height: 95%;
+    top: 2.5%;
+    left: 2.5%;
+    filter: brightness(0.7);
+    outline: 1px black solid;
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 2rem;
+    z-index: 1;
+    border: 4px solid black;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1);
   }
 }
 
 // starting position of the carousel
 $start: 0.5;
+
+// distance between the individual slides; 100 is perfect fit
+$distance: 110;
 
 // $tot for slide count, $j for current slider (min: 2, max: 20)
 @for $tot from 2 through 20 {
@@ -75,16 +97,16 @@ $start: 0.5;
     $multiply: math.max(math.abs($fromX), math.abs($fromY));
     .slide-in-#{$tot}-#{$a - 1}-enter-from {
       transform: translate(
-        (100 / $multiply) * $fromX * 1%,
-        (100 / $multiply) * $fromY * 1%
+        ($distance / $multiply) * $fromX * 1%,
+        ($distance / $multiply) * $fromY * 1%
       );
     }
 
     $multiply: math.max(math.abs($toX), math.abs($toY));
     .slide-in-#{$tot}-#{$a - 1}-leave-to {
       transform: translate(
-        (100 / $multiply) * $toX * 1%,
-        (100 / $multiply) * $toY * 1%
+        ($distance / $multiply) * $toX * 1%,
+        ($distance / $multiply) * $toY * 1%
       );
     }
   }

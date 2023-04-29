@@ -21,11 +21,11 @@ const props = defineProps({
 
 <style lang="scss">
 div.carousel-indicators {
-  position: absolute;
-  bottom: 1.5rem;
-  transform: translateX(-50%);
-  left: 50%;
-  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  z-index: 3;
 
   button.carousel-button {
     width: 1.5rem;
