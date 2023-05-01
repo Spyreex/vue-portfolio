@@ -70,14 +70,16 @@ function moveSlide(move) {
         <i class="bx bxs-left-arrow"></i>
       </div>
       <div class="carousel-inner">
-        <carousel-item
-          v-for="(slide, index) in props.slides"
-          :slide="slide"
-          :key="`item-${index}`"
-          :currentSlide="slider.currentSlide"
-          :index="index"
-          :total="props.slides.length"
-        ></carousel-item>
+        <div class="carousel-items">
+          <carousel-item
+            v-for="(slide, index) in props.slides"
+            :slide="slide"
+            :key="`item-${index}`"
+            :currentSlide="slider.currentSlide"
+            :index="index"
+            :total="props.slides.length"
+          ></carousel-item>
+        </div>
       </div>
       <div class="move move-right" @click="moveSlide(1)">
         <i class="bx bxs-right-arrow"></i>
@@ -109,7 +111,6 @@ button.pause-button {
   top: 0;
   right: 0;
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   &:hover {
     background-color: rgba(255, 255, 255, 0.6);
@@ -127,7 +128,7 @@ div.carousel-container {
 div.carousel {
   display: flex;
   position: relative;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   height: 90%;
@@ -137,19 +138,18 @@ div.carousel {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5%;
+    width: 7.5%;
     height: 80%;
     z-index: 3;
     cursor: pointer;
     &:hover {
       background-color: rgba(255, 255, 255, 0.4);
-      // box-shadow: 0 0 5rem 2.5rem rgba(255, 255, 255, 0.5);
     }
     &.move-right {
-      border-radius: 0 50% 50% 0;
+      border-radius: 2rem 0 0 2rem;
     }
     &.move-left {
-      border-radius: 50% 0 0 50%;
+      border-radius: 0 2rem 2rem 0;
     }
     i {
       font-size: 3rem;
@@ -159,12 +159,52 @@ div.carousel {
   }
 
   div.carousel-inner {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 80%;
     border-radius: 2rem;
     overflow: hidden;
     z-index: 2;
+    border: 4px black solid;
+    box-shadow: inset 0 0 2rem 0 rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.1);
+    div.carousel-items {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  div.carousel {
+    div.carousel-inner {
+      width: 75%;
+    }
+    padding: 0;
+    justify-content: space-between;
+    div.move {
+      width: 9%;
+      height: 90%;
+      i {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  button.pause-button {
+    padding: 0.25rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  button.pause-button {
+    padding: 0rem;
+    margin: 0.5rem;
   }
 }
 </style>

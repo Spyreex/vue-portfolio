@@ -12,10 +12,10 @@ const props = defineProps({
 <template>
   <Transition :name="`slide-in-${props.total}-${props.index}`">
     <div class="carousel-item" v-show="currentSlide === index">
-      <a :href="`#${props.slide.link}`">
+      <router-link :to="{ name: props.slide.link }">
         <img class="border" src="@/assets/images/fotoborder.png" alt="" />
         <img class="main-image" :src="props.slide.url" />
-      </a>
+      </router-link>
     </div>
   </Transition>
 </template>
@@ -25,16 +25,15 @@ const props = defineProps({
 
 div.carousel-item {
   position: absolute;
+  margin: 2rem;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   img.border {
     position: absolute;
-    height: 95%;
-    width: 95%;
-    top: 2.5%;
-    left: 2.5%;
+    height: 100%;
+    width: 100%;
     z-index: 2;
     -webkit-user-select: none;
     user-select: none;
@@ -42,10 +41,8 @@ div.carousel-item {
   img.main-image {
     position: absolute;
     object-fit: cover;
-    width: 95%;
-    height: 95%;
-    top: 2.5%;
-    left: 2.5%;
+    width: 100%;
+    height: 100%;
     filter: brightness(0.7);
     outline: 1px black solid;
     cursor: pointer;
@@ -58,10 +55,30 @@ div.carousel-item {
   }
 }
 
+@media only screen and (max-width: 769px) {
+  div.carousel-item {
+    margin: 1rem;
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  div.carousel-item {
+    margin: -4px;
+  }
+}
+
+@media only screen and (max-width: 481px) {
+  div.carousel-item {
+    img.border {
+      display: none;
+    }
+  }
+}
+
 // starting position of the carousel
 $start: 0.5;
 
-// distance between the individual slides; 100 is perfect fit
+// distance between the individual slides; 100 means it will be directly attached to the next slide
 $distance: 110;
 
 // $tot for slide count, $j for current slider (min: 2, max: 20)

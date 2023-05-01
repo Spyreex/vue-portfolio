@@ -25,6 +25,7 @@ div.carousel-indicators {
   justify-content: center;
   align-items: center;
   height: 10%;
+  column-gap: 0.3rem;
   z-index: 3;
 
   button.carousel-button {
@@ -32,7 +33,6 @@ div.carousel-indicators {
     height: 1.5rem;
     border: none;
     background-color: black;
-    margin: 0.3rem;
     opacity: 0.25;
     border-radius: 50%;
 
@@ -41,6 +41,16 @@ div.carousel-indicators {
       background-color: white;
       opacity: 0.75;
     }
+  }
+}
+@media only screen and (max-width: 769px) {
+  div.carousel-indicators {
+    column-gap: 0.5rem;
+  }
+}
+@media only screen and (max-width: 567px) {
+  div.carousel-indicators {
+    column-gap: 0.75rem;
   }
 }
 </style>
