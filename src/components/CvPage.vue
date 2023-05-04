@@ -1,17 +1,74 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 
-document.documentElement.lang = "en";
+var enEls = [];
+var nlEls = [];
+var jpEls = [];
 
 const language = reactive({
-  currentLanguage: "gb",
+  currentLanguage: "en",
+});
+
+onMounted(() => {
+  enEls = document.querySelectorAll("html [lang='en']");
+  nlEls = document.querySelectorAll("[lang='nl']");
+  jpEls = document.querySelectorAll("[lang='jp']");
+
+  nlEls.forEach((el) => {
+    el.classList.toggle("language-disabled", true);
+  });
+  jpEls.forEach((el) => {
+    el.classList.toggle("language-disabled", true);
+  });
 });
 
 function changeLanguage(lang) {
+  switch (language.currentLanguage) {
+    case "en":
+      enEls.forEach((el) => {
+        el.classList.toggle("language-disabled", true);
+      });
+      break;
+
+    case "nl":
+      nlEls.forEach((el) => {
+        el.classList.toggle("language-disabled", true);
+      });
+      break;
+
+    case "jp":
+      jpEls.forEach((el) => {
+        el.classList.toggle("language-disabled", true);
+      });
+      break;
+
+    default:
+      break;
+  }
+
   language.currentLanguage = lang;
-  if (lang === "gb") document.documentElement.lang = "en";
-  else document.documentElement.lang = lang;
-  console.log(document.documentElement.lang);
+  switch (lang) {
+    case "en":
+      enEls.forEach((el) => {
+        el.classList.toggle("language-disabled", false);
+      });
+      break;
+
+    case "nl":
+      nlEls.forEach((el) => {
+        el.classList.toggle("language-disabled", false);
+      });
+      break;
+
+    case "jp":
+      jpEls.forEach((el) => {
+        el.classList.toggle("language-disabled", false);
+      });
+      break;
+
+    default:
+      break;
+  }
 }
 </script>
 
@@ -29,26 +86,31 @@ function changeLanguage(lang) {
         <li>Find</li>
       </ul>
       <div class="languages">
-        <span class="fi fi-nl" v-if="language.currentLanguage === 'nl'"></span>
+        <span class="fi fi-gb" v-if="language.currentLanguage === 'en'"></span>
         <span
-          class="fi fi-gb"
-          v-else-if="language.currentLanguage === 'gb'"
+          class="fi fi-nl"
+          v-else-if="language.currentLanguage === 'nl'"
         ></span>
         <span class="fi fi-jp" v-else></span>
         <div class="select-language">
+          <span class="fi fi-gb" @click="changeLanguage('en')"></span>
           <span class="fi fi-nl" @click="changeLanguage('nl')"></span>
-          <span class="fi fi-gb" @click="changeLanguage('gb')"></span>
           <span class="fi fi-jp" @click="changeLanguage('jp')"></span>
         </div>
       </div>
     </div>
   </div>
-  <div class="photo">
-    <img src="@/assets/images/cv.png" alt="" />
-
-    <div class="title">
-      <h1>Daniël Phoeng</h1>
-      <p>Balls enjoyer</p>
+  <div class="container">
+    <div class="profile">
+      <div class="photo">
+        <img src="@/assets/images/cv.png" alt="" />
+      </div>
+      <div class="title">
+        <h1>Daniël Phoeng</h1>
+        <p lang="en">Balls enjoyer</p>
+        <p lang="nl">Ballen connoisseur</p>
+        <p lang="jp">b ruh</p>
+      </div>
     </div>
   </div>
 </template>
@@ -116,14 +178,38 @@ div.nav {
   }
 }
 
-div.photo {
+.language-disabled {
+  display: none;
+}
+
+div.container {
   display: flex;
-  img {
-    object-fit: cover;
-    aspect-ratio: 1/1;
-    height: 50%;
-    border-radius: 50%;
-    box-shadow: 0 0 1rem 0 black;
+  width: 100%;
+  justify-content: center;
+}
+
+div.profile {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  width: 60%;
+  div.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    img {
+      object-fit: cover;
+      aspect-ratio: 1/1;
+      height: 50%;
+      border-radius: 50%;
+      box-shadow: 0 0 1rem 0 black;
+    }
+  }
+  div.title {
+    display: flex;
+    width: 50%;
   }
 }
 </style>
