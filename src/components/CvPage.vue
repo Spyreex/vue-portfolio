@@ -104,13 +104,17 @@ function changeLanguage(lang) {
     <div class="profile">
       <div class="photo">
         <img src="@/assets/images/cv.png" alt="" />
+        <div class="info">
+          <h1>Daniël Phoeng</h1>
+          <p lang="en">Balls enjoyer</p>
+          <p lang="nl">Ballen connoisseur</p>
+          <p lang="jp">b ruh</p>
+          <p lang="en">Balls enjoyer</p>
+          <p lang="nl">Ballen connoisseur</p>
+          <p lang="jp">b ruh</p>
+        </div>
       </div>
-      <div class="title">
-        <h1>Daniël Phoeng</h1>
-        <p lang="en">Balls enjoyer</p>
-        <p lang="nl">Ballen connoisseur</p>
-        <p lang="jp">b ruh</p>
-      </div>
+      <div class="links"></div>
     </div>
   </div>
 </template>
@@ -188,27 +192,35 @@ div.container {
 
 div.profile {
   display: flex;
-  justify-content: center;
-  //   border: 1px solid black;
-  margin: 1rem;
-  width: 60%;
+  flex-direction: column;
+  margin: 2rem;
+  height: 50vh;
+  width: 50%;
+
+  // border: 1px solid black;
   div.photo {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // width: 50%;
-    height: 100%;
+    height: 90%;
+    width: 100%;
+    padding: 1rem;
     img {
       object-fit: cover;
       aspect-ratio: 1/1;
-      height: 50%;
+      height: 100%;
       border-radius: 50%;
       box-shadow: 0 0 1rem 0 black;
+      float: left;
+      margin-right: 3rem;
+      shape-outside: circle();
+      -webkit-shape-outside: circle();
+    }
+    div.info {
     }
   }
-  div.title {
-    // display: flex;
-    // width: 50%;
+  div.links {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    height: 10%;
   }
 }
 </style>
