@@ -13,8 +13,9 @@ const props = defineProps({
   <Transition :name="`slide-in-${props.total}-${props.index}`">
     <div class="carousel-item" v-show="currentSlide === index">
       <router-link :to="{ name: props.slide.link }" target="_blank">
-        <img class="border" src="@/assets/images/fotoborder.png" alt="" />
+        <!-- <img class="border" src="@/assets/images/fotoborder.png" alt="" /> -->
         <img class="main-image" :src="props.slide.url" />
+        <h3 v-if="props.slide.title">{{ props.slide.title }}</h3>
       </router-link>
     </div>
   </Transition>
@@ -52,6 +53,15 @@ div.carousel-item {
     z-index: 1;
     border: 4px solid black;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1);
+  }
+  h3 {
+    position: absolute;
+    font-size: 150%;
+    left: 2rem;
+    bottom: 2rem;
+    // transform: translate(-50%, -50%);
+    z-index: 3;
+    margin: 0;
   }
 }
 

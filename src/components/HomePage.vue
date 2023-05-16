@@ -4,20 +4,28 @@ import HeaderBlock from "@/components/home/HeaderBlock.vue";
 // import ContentBlock from "./components/ContentBlock.vue";
 
 class Slide {
-  constructor(url, link) {
+  constructor(url, link, title) {
     this.url = url;
     this.link = link;
+    this.title = title;
   }
 }
 
 const slides = [
   new Slide(
     new URL(`@/assets/images/chickensweeper.png`, import.meta.url).href,
-    "cv"
+    "cv",
+    "Chickensweeper (Minesweeper copy) in JS"
   ),
   new Slide(
-    new URL(`@/assets/images/chickensweeper.png`, import.meta.url).href,
-    "cv"
+    new URL(`@/assets/images/astar.png`, import.meta.url).href,
+    "cv",
+    "A* Algorithm in C#"
+  ),
+  new Slide(
+    new URL(`@/assets/images/solichicken.png`, import.meta.url).href,
+    "cv",
+    "Solichicken (Scuffed Solitaire) In JS"
   ),
 ];
 </script>

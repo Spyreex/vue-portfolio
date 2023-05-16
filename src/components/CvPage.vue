@@ -116,8 +116,6 @@ function changeLanguage(lang) {
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/theme-colors.scss";
-
 div.nav {
   display: flex;
   justify-content: space-between;
@@ -191,13 +189,14 @@ div.container {
 div.profile {
   display: flex;
   justify-content: center;
-  border: 1px solid black;
+  //   border: 1px solid black;
+  margin: 1rem;
   width: 60%;
   div.photo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // width: 50%;
     height: 100%;
     img {
       object-fit: cover;
@@ -208,8 +207,8 @@ div.profile {
     }
   }
   div.title {
-    display: flex;
-    width: 50%;
+    // display: flex;
+    // width: 50%;
   }
 }
 </style>
