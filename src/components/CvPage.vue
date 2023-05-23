@@ -73,48 +73,53 @@ function changeLanguage(lang) {
 </script>
 
 <template>
-  <div class="nav">
-    <div class="left">
-      <h1>CV</h1>
-    </div>
-    <div class="right">
-      <ul class="navigation">
-        <li>Balls</li>
-        <li>Chicken</li>
-        <li>Everytime</li>
-        <li>I</li>
-        <li>Find</li>
-      </ul>
-      <div class="languages">
-        <span class="fi fi-gb" v-if="language.currentLanguage === 'en'"></span>
-        <span
-          class="fi fi-nl"
-          v-else-if="language.currentLanguage === 'nl'"
-        ></span>
-        <span class="fi fi-jp" v-else></span>
-        <div class="select-language">
-          <span class="fi fi-gb" @click="changeLanguage('en')"></span>
-          <span class="fi fi-nl" @click="changeLanguage('nl')"></span>
-          <span class="fi fi-jp" @click="changeLanguage('jp')"></span>
+  <div class="cv">
+    <div class="nav">
+      <div class="left">
+        <h1>CV</h1>
+      </div>
+      <div class="right">
+        <ul class="navigation">
+          <li>Balls</li>
+          <li>Chicken</li>
+          <li>Everytime</li>
+          <li>I</li>
+          <li>Find</li>
+        </ul>
+        <div class="languages">
+          <span
+            class="fi fi-gb"
+            v-if="language.currentLanguage === 'en'"
+          ></span>
+          <span
+            class="fi fi-nl"
+            v-else-if="language.currentLanguage === 'nl'"
+          ></span>
+          <span class="fi fi-jp" v-else></span>
+          <div class="select-language">
+            <span class="fi fi-gb" @click="changeLanguage('en')"></span>
+            <span class="fi fi-nl" @click="changeLanguage('nl')"></span>
+            <span class="fi fi-jp" @click="changeLanguage('jp')"></span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="profile">
-      <div class="photo">
-        <img src="@/assets/images/cv.png" alt="" />
-        <div class="info">
-          <h1>Daniël Phoeng</h1>
-          <p lang="en">Balls enjoyer</p>
-          <p lang="nl">Ballen connoisseur</p>
-          <p lang="jp">b ruh</p>
-          <p lang="en">Balls enjoyer</p>
-          <p lang="nl">Ballen connoisseur</p>
-          <p lang="jp">b ruh</p>
+    <div class="container">
+      <div class="profile">
+        <div class="photo">
+          <img src="@/assets/images/cv.png" alt="" />
+          <div class="info">
+            <h1>Daniël Phoeng</h1>
+            <p lang="en">Balls enjoyer</p>
+            <p lang="nl">Ballen connoisseur</p>
+            <p lang="jp">b ruh</p>
+            <p lang="en">Balls enjoyer</p>
+            <p lang="nl">Ballen connoisseur</p>
+            <p lang="jp">b ruh</p>
+          </div>
         </div>
+        <div class="links"></div>
       </div>
-      <div class="links"></div>
     </div>
   </div>
 </template>

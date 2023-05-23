@@ -33,7 +33,6 @@ const slides = [
 <template>
   <HeaderBlock></HeaderBlock>
   <CarouselBlock :slides="slides"></CarouselBlock>
-  <!-- <ContentBlock :slides="slides"> </ContentBlock> -->
 </template>
 
 <style lang="scss" scoped>

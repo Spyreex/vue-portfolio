@@ -12,7 +12,8 @@ const props = defineProps({
 <template>
   <Transition :name="`slide-in-${props.total}-${props.index}`">
     <div class="carousel-item" v-show="currentSlide === index">
-      <router-link :to="{ name: props.slide.link }" target="_blank">
+      <!-- <router-link :to="`/${props.slide.link}`" target="_blank"> -->
+      <router-link :to="`/${props.slide.link}`">
         <!-- <img class="border" src="@/assets/images/fotoborder.png" alt="" /> -->
         <img class="main-image" :src="props.slide.url" />
         <h3 v-if="props.slide.title">{{ props.slide.title }}</h3>

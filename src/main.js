@@ -5,7 +5,8 @@ import HomePage from "./components/HomePage.vue";
 import CvPage from "./components/CvPage.vue";
 import "@/assets/sass/style.scss";
 import "@/assets/sass/theme-colors.scss";
-import "/node_modules/flag-icons/css/flag-icons.min.css";
+import "flag-icons/css/flag-icons.min.css";
+import "boxicons/css/boxicons.min.css";
 
 const routes = [
   {

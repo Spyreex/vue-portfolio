@@ -1,9 +1,7 @@
 <script setup></script>
 
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <style lang="scss">
@@ -13,7 +11,7 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -29,7 +27,11 @@ html {
 
 body {
   background-image: linear-gradient(to bottom, #71c5f3, #15c5e2, #459af4),
-    radial-gradient(at top center, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.5));
+    radial-gradient(
+      at top center,
+      rgba(255, 255, 255, 1) 0,
+      rgba(0, 0, 0, 0.5) 100%
+    );
   background-blend-mode: multiply, multiply;
 }
 
