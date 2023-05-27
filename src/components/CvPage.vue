@@ -106,25 +106,42 @@ function changeLanguage(lang) {
     </div>
     <div class="container">
       <div class="profile">
-        <div class="photo">
-          <img src="@/assets/images/cv.png" alt="" />
-          <div class="info">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
+        <div class="blob-3"></div>
+        <div class="card-content">
+          <div class="portret">
             <h1>Daniël Phoeng</h1>
-            <p lang="en">Balls enjoyer</p>
-            <p lang="nl">Ballen connoisseur</p>
-            <p lang="jp">b ruh</p>
-            <p lang="en">Balls enjoyer</p>
-            <p lang="nl">Ballen connoisseur</p>
-            <p lang="jp">b ruh</p>
+            <img src="@/assets/images/cv.png" alt="" />
+          </div>
+          <div class="info">
+            <div class="text">
+              <p>+31 6balls</p>
+              <p lang="en">danielphoeng@gmail.com</p>
+              <p lang="nl">danielphoeng@gmail.com</p>
+              <p lang="jp">ダニエル@gmail.com</p>
+            </div>
+            <div class="links">
+              <a href="https://github.com/Spyreex">
+                <i class="bx bxl-github"></i>
+              </a>
+              <a href="https://github.com/dphoeng">
+                <i class="bx bxl-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/daniël-phoeng-b3b50325b/">
+                <i class="bx bxl-linkedin-square"></i>
+              </a>
+            </div>
           </div>
         </div>
-        <div class="links"></div>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@use "sass:map";
+@import "@/assets/sass/theme-colors.scss";
 div.nav {
   display: flex;
   justify-content: space-between;
@@ -198,34 +215,144 @@ div.container {
 div.profile {
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
   margin: 2rem;
-  height: 50vh;
-  width: 50%;
-
-  // border: 1px solid black;
-  div.photo {
-    height: 90%;
-    width: 100%;
-    padding: 1rem;
-    img {
-      object-fit: cover;
-      aspect-ratio: 1/1;
-      height: 100%;
-      border-radius: 50%;
-      box-shadow: 0 0 1rem 0 black;
-      float: left;
-      margin-right: 3rem;
-      shape-outside: circle();
-      -webkit-shape-outside: circle();
-    }
-    div.info {
+  padding: 0.75rem 1rem 1rem 1rem;
+  width: 40%;
+  border-radius: 2rem;
+  background-image: linear-gradient(
+    to bottom right,
+    map.get($palette-colors, "azure-15"),
+    map.get($palette-colors, "azure-5")
+  );
+  box-shadow: 0.2rem 0.2rem 0.5rem 0 black;
+  p,
+  h2 {
+    color: black;
+  }
+  a {
+    color: white;
+  }
+  h1 {
+    margin: 0;
+    z-index: 1;
+  }
+  p {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  div.blob {
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      height: 120%;
+      border-radius: 0 50% 70% 0;
+      background-color: rgb(84, 84, 84);
+      z-index: 0;
     }
   }
-  div.links {
+  div.blob-2 {
+    &::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -10%;
+      width: 60%;
+      height: 40%;
+      border-radius: 80% 30% 0 20%;
+      background-color: rgb(120, 120, 120);
+      z-index: 0;
+      // mix-blend-mode: hard-light;
+    }
+  }
+
+  div.blob-3 {
+    &::before {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: 25%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 30%;
+      border-radius: 10% 10% 42% 58% / 10% 36% 64% 40%;
+      background-color: rgb(59, 59, 59);
+      z-index: 0;
+    }
+  }
+
+  div.card-content {
     display: flex;
     flex-direction: row;
-    padding: 1rem;
-    height: 10%;
+    z-index: 1;
+
+    div.portret {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      img {
+        object-fit: cover;
+        width: 70%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        margin-top: 2rem;
+      }
+    }
+    div.info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 50%;
+      div.text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      div.links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        a {
+          font-size: 4rem;
+          line-height: 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  div.profile {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  div.profile {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  div.profile {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  div.profile {
+    width: 90%;
+    margin: 1rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  div.profile {
+    width: 100%;
   }
 }
 </style>

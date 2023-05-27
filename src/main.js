@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./components/HomePage.vue";
 import CvPage from "./components/CvPage.vue";
 import "@/assets/sass/style.scss";
-import "@/assets/sass/theme-colors.scss";
 import "flag-icons/css/flag-icons.min.css";
 import "boxicons/css/boxicons.min.css";
 

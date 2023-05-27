@@ -8,7 +8,6 @@
 @use "sass:map";
 @import "@/assets/sass/theme-colors.scss";
 
-html,
 body {
   width: 100%;
   height: 100vh;
@@ -26,13 +25,22 @@ html {
 }
 
 body {
-  background-image: linear-gradient(to bottom, #71c5f3, #15c5e2, #459af4),
+  background-image: linear-gradient(
+      to bottom,
+      map.get($palette-colors, "azure-4"),
+      map.get($palette-colors, "azure-8"),
+      map.get($palette-colors, "azure-12")
+    ),
     radial-gradient(
       at top center,
       rgba(255, 255, 255, 1) 0,
       rgba(0, 0, 0, 0.5) 100%
     );
   background-blend-mode: multiply, multiply;
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 h1,
@@ -60,5 +68,29 @@ label,
 p,
 li {
   color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  html {
+    font-size: 9px;
+  }
 }
 </style>

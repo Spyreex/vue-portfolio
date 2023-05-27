@@ -1,12 +1,12 @@
 <script setup>
 import CarouselBlock from "@/components/home/CarouselBlock.vue";
 import HeaderBlock from "@/components/home/HeaderBlock.vue";
-// import ContentBlock from "./components/ContentBlock.vue";
 
 class Slide {
-  constructor(url, link, title) {
+  constructor(url, link, external, title) {
     this.url = url;
     this.link = link;
+    this.external = external;
     this.title = title;
   }
 }
@@ -14,17 +14,20 @@ class Slide {
 const slides = [
   new Slide(
     new URL(`@/assets/images/chickensweeper.png`, import.meta.url).href,
-    "cv",
+    "https://spyreex.github.io/chickensweeper/",
+    true,
     "Chickensweeper (Minesweeper copy) in JS"
   ),
   new Slide(
     new URL(`@/assets/images/astar.png`, import.meta.url).href,
     "cv",
+    false,
     "A* Algorithm in C#"
   ),
   new Slide(
     new URL(`@/assets/images/solichicken.png`, import.meta.url).href,
-    "cv",
+    "https://spyreex.github.io/solichicken/",
+    true,
     "Solichicken (Scuffed Solitaire) In JS"
   ),
 ];
