@@ -10,10 +10,8 @@
 
 body {
   width: 100%;
-  height: 100vh;
   margin: 0;
   padding: 0;
-  font-size: 16px;
 }
 
 * {
@@ -22,14 +20,15 @@ body {
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
   background-image: linear-gradient(
       to bottom,
-      map.get($palette-colors, "azure-4"),
-      map.get($palette-colors, "azure-8"),
-      map.get($palette-colors, "azure-12")
+      map.get($palette-colors, "azure-6"),
+      map.get($palette-colors, "azure-10"),
+      map.get($palette-colors, "azure-14")
     ),
     radial-gradient(
       at top center,
