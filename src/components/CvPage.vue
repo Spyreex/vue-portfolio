@@ -33,7 +33,7 @@ const languages = [
 ];
 
 const language = reactive({
-  currentLanguage: "en",
+  currentLanguage: "nl",
 });
 
 onMounted(() => {
@@ -41,7 +41,7 @@ onMounted(() => {
   nlEls = document.querySelectorAll("[lang='nl']");
   jpEls = document.querySelectorAll("[lang='jp']");
 
-  nlEls.forEach((el) => {
+  enEls.forEach((el) => {
     el.classList.toggle("language-disabled", true);
   });
   jpEls.forEach((el) => {
@@ -199,29 +199,29 @@ function changeLanguage(lang) {
                 <h2 lang="en">Who am I?</h2>
                 <h2 lang="jp">私は誰か</h2>
               </div>
-              <p>
+              <p lang="nl">
                 Mijn naam is Daniël Phoeng, ik ben 21 jaar en ik woon in Utrecht
               </p>
-              <p>
+              <p lang="nl">
                 Ik ben een zorgvuldige werker, ik vind het belangrijk dat ik het
                 beste uit mijzelf haal. Verder ben ik een erg positief en
                 optimistisch persoon. Ik zal niet snel de hoop opgeven. Maar hoe
                 ben ik hier gekomen?
               </p>
-              <p>
+              <p lang="nl">
                 Van jongs af aan was ik al geïnteresseerd in programeren, maar
                 mijn eerste echte contact met programeren was op de HAVO bij het
                 keuzedeel ICT. Vanaf toen wist ik eigenlijk al dat ik later iets
                 wou doen met software.
               </p>
-              <p>
+              <p lang="nl">
                 Nadat ik het HAVO succesvol had afgerond heb ik twee keer
                 geprobeerd om een opleiding af te ronden. Achteraf gezien vind
                 ik dat ik nog te onvolwassen was voor die opleidingen. Na de
                 tweede keer gestopt te zijn van een opleiding heb ik een
                 tussenjaar genomen.
               </p>
-              <p>
+              <p lang="nl">
                 Dat brengt ons op vandaag, met 100 keer zoveel ervaring en vele
                 malen volwassenner zit ik op de opleiding Software Developer op
                 het MBO Utrecht. Natuurlijk ben ik nog steeds niet perfect, maar
@@ -232,30 +232,30 @@ function changeLanguage(lang) {
           <div class="col col-half">
             <div class="hobbies">
               <div class="head">
-                <h2>Hobbies</h2>
+                <h2 lang="nl">Hobbies</h2>
               </div>
               <h3>Koken</h3>
-              <p>
+              <p lang="nl">
                 Elke donderdag kook ik, mijn moeder leert mij dan nieuwe
                 recepten of herhaald oudere recepten. Ik wil vooral koken zodat
                 ik later goed op mijzelf kan wonen, maar ik vind het ook gewoon
                 heel leuk om te doen.
               </p>
               <h3>Gamen</h3>
-              <p>
+              <p lang="nl">
                 Mijn favoriete games zijn op dit moment Civilization IV, League
                 of Legends, osu! en Hell Let Loose. Ik ben erg competitief
                 ingesteld, dus ik hou wel van een toernooitje.
               </p>
               <h3>Piano / Muziek</h3>
-              <p>
+              <p lang="nl">
                 Ik heb een keyboard op mijn kamer waar ik af en toe op zit, ik
                 speel dan vooral electronische muziek stukken. Verder luister ik
                 heel erg veel naar muziek en bijna altijd terwijl ik dingen aan
                 het doen ben.
               </p>
               <h3>Reizen</h3>
-              <p>
+              <p lang="nl">
                 Ik hou van reizen, niet alleen het buitenland maar ook gewoon
                 binnen Nederland. Zo neem ik soms grote omwegen met de fiets om
                 meer te zien van het land.
@@ -267,15 +267,15 @@ function changeLanguage(lang) {
           <div class="col col-half">
             <div class="education">
               <div class="head">
-                <h2>Opleidingen</h2>
+                <h2 lang="nl">Opleidingen</h2>
               </div>
               <div class="row">
-                <div class="col period"><p>2021 - Heden</p></div>
+                <div class="col period"><p lang="nl">2021 - Heden</p></div>
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>MBO Utrecht</h3>
-                  <p class="underline what">Software Developer</p>
-                  <p>Talen en frameworks:</p>
+                  <p lang="nl" class="underline what">Software Developer</p>
+                  <p lang="nl">Talen en frameworks:</p>
                   <ul>
                     <li>C#</li>
                     <li>JavaScript, HTML, (S)CSS</li>
@@ -285,7 +285,7 @@ function changeLanguage(lang) {
                     <li>Laravel</li>
                     <li>Vue.js</li>
                   </ul>
-                  <p>Keuzedelen:</p>
+                  <p lang="nl">Keuzedelen:</p>
                   <ul>
                     <li>Basisprogrammeren van games</li>
                     <li>Gameplay</li>
@@ -298,24 +298,24 @@ function changeLanguage(lang) {
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>Codam Coding College</h3>
-                  <p>Talen:</p>
+                  <p lang="nl">Talen:</p>
                   <ul>
                     <li>C</li>
                   </ul>
-                  <p class="red"><b>Niet afgerond</b></p>
+                  <p class="red"><b lang="nl">Niet afgerond</b></p>
                 </div>
               </div>
               <div class="row">
                 <div class="col period"><p>2018 - 2019</p></div>
                 <div class="col bar"></div>
                 <div class="col info">
-                  <h3>Hogeschool Utrecht</h3>
+                  <h3 lang="nl">Hogeschool Utrecht</h3>
                   <p class="underline what">HBO-ICT Bachelor</p>
-                  <p>Talen:</p>
+                  <p lang="nl">Talen:</p>
                   <ul>
-                    <li>Python</li>
+                    <li lang="nl">Python</li>
                   </ul>
-                  <p class="red"><b>Niet afgerond</b></p>
+                  <p class="red" lang="nl"><b>Niet afgerond</b></p>
                 </div>
               </div>
               <div class="row">
@@ -324,9 +324,9 @@ function changeLanguage(lang) {
                 <div class="col info">
                   <h3>Leidsche Rijn College</h3>
                   <p class="underline what">HAVO - Natuur & Techniek</p>
-                  <p>Keuzedeel:</p>
+                  <p lang="nl">Keuzedeel:</p>
                   <ul>
-                    <li>Economie</li>
+                    <li lang="nl">Economie</li>
                   </ul>
                 </div>
               </div>
@@ -335,50 +335,56 @@ function changeLanguage(lang) {
           <div class="col col-half">
             <div class="experience">
               <div class="head">
-                <h2>Werkervaring</h2>
+                <h2 lang="nl">Werkervaring</h2>
               </div>
               <div class="row">
                 <div class="col period">
-                  <p>Oktober 2020 - Augustus 2021</p>
+                  <p lang="nl">Oktober 2020 - Augustus 2021</p>
                 </div>
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>Picnic B.V.</h3>
                   <p class="underline what">Shopper</p>
-                  <p>Magazijnmedewerker in een distribute centrum</p>
+                  <p lang="nl">Magazijnmedewerker in een distribute centrum</p>
                   <ul>
-                    <li>Verzamelen van boodschappen in het magazijn</li>
-                    <li>Laden en lossen van vrachtwagens</li>
+                    <li lang="nl">
+                      Verzamelen van boodschappen in het magazijn
+                    </li>
+                    <li lang="nl">Laden en lossen van vrachtwagens</li>
                   </ul>
                 </div>
               </div>
               <div class="row">
                 <div class="col period">
-                  <p>Februari 2017 - Augustus 2018</p>
+                  <p lang="nl">Februari 2017 - Augustus 2018</p>
                 </div>
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>Vomar voordeelmarkt</h3>
-                  <p class="underline what">Vakkenvuller</p>
-                  <p>Vakkenvuller in een supermarkt</p>
+                  <p class="underline what" lang="nl">Vakkenvuller</p>
+                  <p lang="nl">Vakkenvuller in een supermarkt</p>
                   <ul>
-                    <li>Aanvullen boodschappen in schappen</li>
-                    <li>Spiegelen van producten</li>
+                    <li lang="nl">Aanvullen boodschappen in schappen</li>
+                    <li lang="nl">Spiegelen van producten</li>
                   </ul>
                 </div>
               </div>
               <div class="row">
                 <div class="col period">
-                  <p>December 2015 - Mei 2016</p>
+                  <p lang="nl">December 2015 - Mei 2016</p>
                 </div>
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>ATV Stadion</h3>
-                  <p class="underline what">Winkelhulp</p>
-                  <p>Maatschappelijke stage: Winkelhulp in de tuin winkel</p>
+                  <p class="underline what" lang="nl">Winkelhulp</p>
+                  <p lang="nl">
+                    Maatschappelijke stage: Winkelhulp in de tuin winkel
+                  </p>
                   <ul>
-                    <li>Aanvullen goederen</li>
-                    <li>Afrekenen aankopen van klanten aan de kassa</li>
+                    <li lang="nl">Aanvullen goederen</li>
+                    <li lang="nl">
+                      Afrekenen aankopen van klanten aan de kassa
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -389,10 +395,10 @@ function changeLanguage(lang) {
           <div class="col col-full">
             <div class="qualities">
               <div class="head">
-                <h2>Vaardigheden</h2>
+                <h2 lang="nl">Vaardigheden</h2>
               </div>
               <div class="coding">
-                <h3>Programeer ervaring</h3>
+                <h3 lang="nl">Programeer ervaring</h3>
                 <div class="block">
                   <QualityBlock
                     v-for="(quality, index) in qualities"
@@ -403,7 +409,7 @@ function changeLanguage(lang) {
                 </div>
               </div>
               <div class="languages">
-                <h3>Taal vaardigheden</h3>
+                <h3 lang="nl">Taal vaardigheden</h3>
                 <div class="block">
                   <QualityBlock
                     v-for="(language, index) in languages"
