@@ -13,6 +13,12 @@ class Slide {
 
 const slides = [
   new Slide(
+    new URL(`@/assets/images/cv3.png`, import.meta.url).href,
+    "cv",
+    false,
+    "Curriculum Vitae"
+  ),
+  new Slide(
     new URL(`@/assets/images/chickensweeper.png`, import.meta.url).href,
     "https://spyreex.github.io/chickensweeper/",
     true,
@@ -20,8 +26,8 @@ const slides = [
   ),
   new Slide(
     new URL(`@/assets/images/astar.png`, import.meta.url).href,
-    "cv",
-    false,
+    "https://github.com/Spyreex/AStar",
+    true,
     "A* Algorithm in C#"
   ),
   new Slide(
