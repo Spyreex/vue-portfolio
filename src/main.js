@@ -6,6 +6,7 @@ import CvPage from "./components/CvPage.vue";
 import "@/assets/sass/style.scss";
 import "flag-icons/css/flag-icons.min.css";
 import "boxicons/css/boxicons.min.css";
+import { createI18n } from "vue-i18n";
 
 const routes = [
   {
@@ -20,9 +21,33 @@ const routes = [
   },
 ];
 
+const messages = {
+  en: {
+    message: {
+      who: "Who am I?",
+    },
+  },
+  nl: {
+    message: {
+      who: "Wie ben ik?",
+    },
+  },
+  jp: {
+    message: {},
+  },
+};
+
+const i18n = createI18n({
+  locale: "nl", // set locale
+  fallbackLocale: "en", // set fallback locale
+  messages, // set locale messages
+  // If you need to specify other options, you can set other options
+  // ...
+});
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).use(i18n).mount("#app");

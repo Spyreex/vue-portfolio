@@ -107,12 +107,23 @@ function changeLanguage(lang) {
       </div>
       <div class="right">
         <ul class="navigation">
-          <li>Balls</li>
-          <li>Chicken</li>
-          <li>Everytime</li>
-          <li>I</li>
-          <li>Find</li>
+          <li>
+            <a href="#who">{{ $t("message.who") }}</a>
+          </li>
+          <li><a href="#hobbies">Hobbies</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#qualities">Qualities</a></li>
         </ul>
+        <select v-model="$i18n.locale">
+          <option
+            v-for="locale in $i18n.availableLocales"
+            :key="`locale-${locale}`"
+            :value="locale"
+          >
+            {{ locale }}
+          </option>
+        </select>
         <div class="languages">
           <span
             class="fi fi-gb"
@@ -140,7 +151,7 @@ function changeLanguage(lang) {
           <div class="portret">
             <h2>Daniël Phoeng</h2>
             <p>Junior Software Developer</p>
-            <img src="@/assets/images/cv.png" alt="" />
+            <img src="@/assets/images/cv4.png" alt="" />
           </div>
           <div class="info">
             <div class="text">
@@ -193,7 +204,7 @@ function changeLanguage(lang) {
       <div class="information">
         <div class="row">
           <div class="col col-half">
-            <div class="who">
+            <div class="who" id="who">
               <div class="head">
                 <h2 lang="nl">Wie ben ik?</h2>
                 <h2 lang="en">Who am I?</h2>
@@ -230,7 +241,7 @@ function changeLanguage(lang) {
             </div>
           </div>
           <div class="col col-half">
-            <div class="hobbies">
+            <div class="hobbies" id="hobbies">
               <div class="head">
                 <h2 lang="nl">Hobbies</h2>
               </div>
@@ -265,7 +276,7 @@ function changeLanguage(lang) {
         </div>
         <div class="row">
           <div class="col col-half">
-            <div class="education">
+            <div class="education" id="education">
               <div class="head">
                 <h2 lang="nl">Opleidingen</h2>
               </div>
@@ -333,7 +344,7 @@ function changeLanguage(lang) {
             </div>
           </div>
           <div class="col col-half">
-            <div class="experience">
+            <div class="experience" id="experience">
               <div class="head">
                 <h2 lang="nl">Werkervaring</h2>
               </div>
@@ -393,7 +404,7 @@ function changeLanguage(lang) {
         </div>
         <div class="row">
           <div class="col col-full">
-            <div class="qualities">
+            <div class="qualities" id="qualities">
               <div class="head">
                 <h2 lang="nl">Vaardigheden</h2>
               </div>
