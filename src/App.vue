@@ -53,7 +53,8 @@ h6 {
 
 label,
 p,
-li {
+li,
+a {
   font-family: montserrat;
 }
 

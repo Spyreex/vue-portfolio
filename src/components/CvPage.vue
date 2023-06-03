@@ -1,10 +1,6 @@
 <script setup>
 import QualityBlock from "@/components/cv/QualityBlock.vue";
-import { reactive, onMounted } from "vue";
-
-var enEls = [];
-var nlEls = [];
-var jpEls = [];
+import { reactive } from "vue";
 
 class Quality {
   constructor(name, grade) {
@@ -32,71 +28,9 @@ const languages = [
   new Quality("Japans", 1),
 ];
 
-const language = reactive({
-  currentLanguage: "nl",
+const hamburger = reactive({
+  isActive: false,
 });
-
-onMounted(() => {
-  enEls = document.querySelectorAll("html [lang='en']");
-  nlEls = document.querySelectorAll("[lang='nl']");
-  jpEls = document.querySelectorAll("[lang='jp']");
-
-  enEls.forEach((el) => {
-    el.classList.toggle("language-disabled", true);
-  });
-  jpEls.forEach((el) => {
-    el.classList.toggle("language-disabled", true);
-  });
-});
-
-function changeLanguage(lang) {
-  switch (language.currentLanguage) {
-    case "en":
-      enEls.forEach((el) => {
-        el.classList.toggle("language-disabled", true);
-      });
-      break;
-
-    case "nl":
-      nlEls.forEach((el) => {
-        el.classList.toggle("language-disabled", true);
-      });
-      break;
-
-    case "jp":
-      jpEls.forEach((el) => {
-        el.classList.toggle("language-disabled", true);
-      });
-      break;
-
-    default:
-      break;
-  }
-
-  language.currentLanguage = lang;
-  switch (lang) {
-    case "en":
-      enEls.forEach((el) => {
-        el.classList.toggle("language-disabled", false);
-      });
-      break;
-
-    case "nl":
-      nlEls.forEach((el) => {
-        el.classList.toggle("language-disabled", false);
-      });
-      break;
-
-    case "jp":
-      jpEls.forEach((el) => {
-        el.classList.toggle("language-disabled", false);
-      });
-      break;
-
-    default:
-      break;
-  }
-}
 </script>
 
 <template>
@@ -106,38 +40,49 @@ function changeLanguage(lang) {
         <h1>Curriculum Vitae - Daniël Phoeng</h1>
       </div>
       <div class="right">
-        <ul class="navigation">
-          <li>
-            <a href="#who">{{ $t("message.who") }}</a>
-          </li>
-          <li><a href="#hobbies">Hobbies</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#qualities">Qualities</a></li>
-        </ul>
-        <select v-model="$i18n.locale">
-          <option
-            v-for="locale in $i18n.availableLocales"
-            :key="`locale-${locale}`"
-            :value="locale"
-          >
-            {{ locale }}
-          </option>
-        </select>
-        <div class="languages">
-          <span
-            class="fi fi-gb"
-            v-if="language.currentLanguage === 'en'"
-          ></span>
-          <span
-            class="fi fi-nl"
-            v-else-if="language.currentLanguage === 'nl'"
-          ></span>
-          <span class="fi fi-jp" v-else></span>
-          <div class="select-language">
-            <span class="fi fi-gb" @click="changeLanguage('en')"></span>
-            <span class="fi fi-nl" @click="changeLanguage('nl')"></span>
-            <span class="fi fi-jp" @click="changeLanguage('jp')"></span>
+        <button
+          :class="
+            hamburger.isActive
+              ? 'hamburger hamburger--elastic is-active'
+              : 'hamburger hamburger--elastic '
+          "
+          type="button"
+          @click="hamburger.isActive = !hamburger.isActive"
+        >
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+        <div
+          :class="hamburger.isActive ? 'navigation is-active' : 'navigation'"
+        >
+          <div class="nav-list">
+            <a href="#who" @click="hamburger.isActive = false">{{
+              $t("headings.who")
+            }}</a>
+            <a href="#hobbies" @click="hamburger.isActive = false">{{
+              $t("headings.hobbies")
+            }}</a>
+            <a href="#education" @click="hamburger.isActive = false">{{
+              $t("headings.education")
+            }}</a>
+            <a href="#experience" @click="hamburger.isActive = false">{{
+              $t("headings.experience")
+            }}</a>
+            <a href="#qualities" @click="hamburger.isActive = false">{{
+              $t("headings.qualities")
+            }}</a>
+          </div>
+          <div class="languages">
+            <span :class="`fi fi-${$i18n.locale}`"></span>
+            <div class="select-language">
+              <span
+                v-for="(locale, index) in $i18n.availableLocales"
+                :class="`fi fi-${locale}`"
+                @click="$i18n.locale = locale"
+                :key="index"
+              ></span>
+            </div>
           </div>
         </div>
       </div>
@@ -166,22 +111,16 @@ function changeLanguage(lang) {
                 <p class="blurred">Fake Address 42</p>
               </div>
               <div class="line">
-                <p lang="nl">Utrecht, Nederland</p>
-                <p lang="en">Utrecht, The Netherlands</p>
-                <p lang="jp">Utrecht, オランダ</p>
+                <p>{{ $t("card.residence") }}</p>
               </div>
               <div class="line">
                 <p>&nbsp;</p>
               </div>
               <div class="line">
-                <p lang="nl">Nederlandse</p>
-                <p lang="en">Dutch</p>
-                <p lang="jp">オランダ人</p>
+                <p>{{ $t("card.nationality") }}</p>
               </div>
               <div class="line">
-                <p lang="nl">Geboren op 3 Juli 2001</p>
-                <p lang="en">Born on 3 July 2001</p>
-                <p lang="jp">Born on 3 July 2001</p>
+                <p>{{ $t("card.birthday") }}</p>
               </div>
             </div>
             <div class="links">
@@ -206,71 +145,38 @@ function changeLanguage(lang) {
           <div class="col col-half">
             <div class="who" id="who">
               <div class="head">
-                <h2 lang="nl">Wie ben ik?</h2>
-                <h2 lang="en">Who am I?</h2>
-                <h2 lang="jp">私は誰か</h2>
+                <h2>{{ $t("headings.who") }}</h2>
               </div>
-              <p lang="nl">
-                Mijn naam is Daniël Phoeng, ik ben 21 jaar en ik woon in Utrecht
+              <p>
+                {{ $t("who.intro_1") }}
               </p>
-              <p lang="nl">
-                Ik ben een zorgvuldige werker, ik vind het belangrijk dat ik het
-                beste uit mijzelf haal. Verder ben ik een erg positief en
-                optimistisch persoon. Ik zal niet snel de hoop opgeven. Maar hoe
-                ben ik hier gekomen?
+              <p>
+                {{ $t("who.intro_2") }}
               </p>
-              <p lang="nl">
-                Van jongs af aan was ik al geïnteresseerd in programeren, maar
-                mijn eerste echte contact met programeren was op de HAVO bij het
-                keuzedeel ICT. Vanaf toen wist ik eigenlijk al dat ik later iets
-                wou doen met software.
+              <p>
+                {{ $t("who.intro_3") }}
               </p>
-              <p lang="nl">
-                Nadat ik het HAVO succesvol had afgerond heb ik twee keer
-                geprobeerd om een opleiding af te ronden. Achteraf gezien vind
-                ik dat ik nog te onvolwassen was voor die opleidingen. Na de
-                tweede keer gestopt te zijn van een opleiding heb ik een
-                tussenjaar genomen.
+              <p>
+                {{ $t("who.intro_4") }}
               </p>
-              <p lang="nl">
-                Dat brengt ons op vandaag, met 100 keer zoveel ervaring en vele
-                malen volwassenner zit ik op de opleiding Software Developer op
-                het MBO Utrecht. Natuurlijk ben ik nog steeds niet perfect, maar
-                ik streef er altijd naar om mijzelf te verbeteren!
+              <p>
+                {{ $t("who.intro_5") }}
               </p>
             </div>
           </div>
           <div class="col col-half">
             <div class="hobbies" id="hobbies">
               <div class="head">
-                <h2 lang="nl">Hobbies</h2>
+                <h2>{{ $t("headings.hobbies") }}</h2>
               </div>
-              <h3>Koken</h3>
-              <p lang="nl">
-                Elke donderdag kook ik, mijn moeder leert mij dan nieuwe
-                recepten of herhaald oudere recepten. Ik wil vooral koken zodat
-                ik later goed op mijzelf kan wonen, maar ik vind het ook gewoon
-                heel leuk om te doen.
-              </p>
-              <h3>Gamen</h3>
-              <p lang="nl">
-                Mijn favoriete games zijn op dit moment Civilization IV, League
-                of Legends, osu! en Hell Let Loose. Ik ben erg competitief
-                ingesteld, dus ik hou wel van een toernooitje.
-              </p>
-              <h3>Piano / Muziek</h3>
-              <p lang="nl">
-                Ik heb een keyboard op mijn kamer waar ik af en toe op zit, ik
-                speel dan vooral electronische muziek stukken. Verder luister ik
-                heel erg veel naar muziek en bijna altijd terwijl ik dingen aan
-                het doen ben.
-              </p>
-              <h3>Reizen</h3>
-              <p lang="nl">
-                Ik hou van reizen, niet alleen het buitenland maar ook gewoon
-                binnen Nederland. Zo neem ik soms grote omwegen met de fiets om
-                meer te zien van het land.
-              </p>
+              <h3>{{ $t("hobbies.headings.hobby_1") }}</h3>
+              <p>{{ $t("hobbies.text.explanation_1") }}</p>
+              <h3>{{ $t("hobbies.headings.hobby_2") }}</h3>
+              <p>{{ $t("hobbies.text.explanation_2") }}</p>
+              <h3>{{ $t("hobbies.headings.hobby_3") }}</h3>
+              <p>{{ $t("hobbies.text.explanation_3") }}</p>
+              <h3>{{ $t("hobbies.headings.hobby_4") }}</h3>
+              <p>{{ $t("hobbies.text.explanation_4") }}</p>
             </div>
           </div>
         </div>
@@ -278,15 +184,22 @@ function changeLanguage(lang) {
           <div class="col col-half">
             <div class="education" id="education">
               <div class="head">
-                <h2 lang="nl">Opleidingen</h2>
+                <h2>{{ $t("headings.education") }}</h2>
               </div>
               <div class="row">
-                <div class="col period"><p lang="nl">2021 - Heden</p></div>
+                <div class="col period">
+                  <p>2021 - {{ $t("education.text.present") }}</p>
+                </div>
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>MBO Utrecht</h3>
-                  <p lang="nl" class="underline what">Software Developer</p>
-                  <p lang="nl">Talen en frameworks:</p>
+                  <p class="underline what">Software Developer</p>
+                  <p>
+                    {{
+                      $t("education.text.languages") +
+                      $t("education.text.and_frameworks")
+                    }}:
+                  </p>
                   <ul>
                     <li>C#</li>
                     <li>JavaScript, HTML, (S)CSS</li>
@@ -296,7 +209,7 @@ function changeLanguage(lang) {
                     <li>Laravel</li>
                     <li>Vue.js</li>
                   </ul>
-                  <p lang="nl">Keuzedelen:</p>
+                  <p>{{ $t("education.text.optional") }}:</p>
                   <ul>
                     <li>Basisprogrammeren van games</li>
                     <li>Gameplay</li>
@@ -309,24 +222,28 @@ function changeLanguage(lang) {
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>Codam Coding College</h3>
-                  <p lang="nl">Talen:</p>
+                  <p>{{ $t("education.text.languages") }}:</p>
                   <ul>
                     <li>C</li>
                   </ul>
-                  <p class="red"><b lang="nl">Niet afgerond</b></p>
+                  <p class="red">
+                    <b>{{ $t("education.text.unfinished") }}</b>
+                  </p>
                 </div>
               </div>
               <div class="row">
                 <div class="col period"><p>2018 - 2019</p></div>
                 <div class="col bar"></div>
                 <div class="col info">
-                  <h3 lang="nl">Hogeschool Utrecht</h3>
+                  <h3>Hogeschool Utrecht</h3>
                   <p class="underline what">HBO-ICT Bachelor</p>
-                  <p lang="nl">Talen:</p>
+                  <p>{{ $t("education.text.languages") }}:</p>
                   <ul>
-                    <li lang="nl">Python</li>
+                    <li>Python</li>
                   </ul>
-                  <p class="red" lang="nl"><b>Niet afgerond</b></p>
+                  <p class="red">
+                    <b>{{ $t("education.text.unfinished") }}</b>
+                  </p>
                 </div>
               </div>
               <div class="row">
@@ -335,9 +252,9 @@ function changeLanguage(lang) {
                 <div class="col info">
                   <h3>Leidsche Rijn College</h3>
                   <p class="underline what">HAVO - Natuur & Techniek</p>
-                  <p lang="nl">Keuzedeel:</p>
+                  <p>{{ $t("education.text.optional") }}:</p>
                   <ul>
-                    <li lang="nl">Economie</li>
+                    <li>Economie</li>
                   </ul>
                 </div>
               </div>
@@ -346,56 +263,50 @@ function changeLanguage(lang) {
           <div class="col col-half">
             <div class="experience" id="experience">
               <div class="head">
-                <h2 lang="nl">Werkervaring</h2>
+                <h2>{{ $t("headings.experience") }}</h2>
               </div>
               <div class="row">
                 <div class="col period">
-                  <p lang="nl">Oktober 2020 - Augustus 2021</p>
+                  <p>{{ $t("experience.dates.job_period_3") }}</p>
                 </div>
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>Picnic B.V.</h3>
                   <p class="underline what">Shopper</p>
-                  <p lang="nl">Magazijnmedewerker in een distribute centrum</p>
+                  <p>{{ $t("experience.function.job_function_3") }}</p>
                   <ul>
-                    <li lang="nl">
-                      Verzamelen van boodschappen in het magazijn
-                    </li>
-                    <li lang="nl">Laden en lossen van vrachtwagens</li>
+                    <li>{{ $t("experience.info.job_info_3_1") }}</li>
+                    <li>{{ $t("experience.info.job_info_3_2") }}</li>
                   </ul>
                 </div>
               </div>
               <div class="row">
                 <div class="col period">
-                  <p lang="nl">Februari 2017 - Augustus 2018</p>
+                  <p>{{ $t("experience.dates.job_period_2") }}</p>
                 </div>
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>Vomar voordeelmarkt</h3>
-                  <p class="underline what" lang="nl">Vakkenvuller</p>
-                  <p lang="nl">Vakkenvuller in een supermarkt</p>
+                  <p class="underline what">Vakkenvuller</p>
+                  <p>{{ $t("experience.function.job_function_2") }}</p>
                   <ul>
-                    <li lang="nl">Aanvullen boodschappen in schappen</li>
-                    <li lang="nl">Spiegelen van producten</li>
+                    <li>{{ $t("experience.info.job_info_2_1") }}</li>
+                    <li>{{ $t("experience.info.job_info_2_2") }}</li>
                   </ul>
                 </div>
               </div>
               <div class="row">
                 <div class="col period">
-                  <p lang="nl">December 2015 - Mei 2016</p>
+                  <p>{{ $t("experience.dates.job_period_1") }}</p>
                 </div>
                 <div class="col bar"></div>
                 <div class="col info">
                   <h3>ATV Stadion</h3>
-                  <p class="underline what" lang="nl">Winkelhulp</p>
-                  <p lang="nl">
-                    Maatschappelijke stage: Winkelhulp in de tuin winkel
-                  </p>
+                  <p class="underline what">Winkelhulp</p>
+                  <p>{{ $t("experience.function.job_function_1") }}</p>
                   <ul>
-                    <li lang="nl">Aanvullen goederen</li>
-                    <li lang="nl">
-                      Afrekenen aankopen van klanten aan de kassa
-                    </li>
+                    <li>{{ $t("experience.info.job_info_1_1") }}</li>
+                    <li>{{ $t("experience.info.job_info_1_2") }}</li>
                   </ul>
                 </div>
               </div>
@@ -406,10 +317,10 @@ function changeLanguage(lang) {
           <div class="col col-full">
             <div class="qualities" id="qualities">
               <div class="head">
-                <h2 lang="nl">Vaardigheden</h2>
+                <h2>{{ $t("headings.qualities") }}</h2>
               </div>
               <div class="coding">
-                <h3 lang="nl">Programeer ervaring</h3>
+                <h3>{{ $t("qualities.headings.programming") }}</h3>
                 <div class="block">
                   <QualityBlock
                     v-for="(quality, index) in qualities"
@@ -420,7 +331,7 @@ function changeLanguage(lang) {
                 </div>
               </div>
               <div class="languages">
-                <h3 lang="nl">Taal vaardigheden</h3>
+                <h3>{{ $t("qualities.headings.language") }}</h3>
                 <div class="block">
                   <QualityBlock
                     v-for="(language, index) in languages"
@@ -445,56 +356,76 @@ div.nav {
   display: flex;
   justify-content: space-between;
   box-shadow: 0 0 1rem 0 black;
-  padding: 0rem 2rem;
 
   div.left {
     display: flex;
+    align-items: center;
+    padding-left: 2rem;
   }
 
   div.right {
     display: flex;
     align-items: center;
-    column-gap: 2rem;
+    column-gap: 1rem;
+    padding-right: 2rem;
+    width: 56%;
+    justify-content: flex-end;
 
     ul {
       padding: 0;
       margin: 0;
     }
 
-    ul.navigation {
-      display: flex;
-      list-style: none;
-      li {
-        padding: 1rem;
-      }
+    button.hamburger {
+      display: none;
     }
-    div.languages {
-      position: relative;
-      span {
-        font-size: 1.5rem;
-      }
-      > span {
-        padding: 0.5rem 1rem;
-      }
 
-      &:hover {
-        div.select-language {
-          display: flex;
+    div.navigation {
+      display: flex;
+      align-items: center;
+      column-gap: 0.5rem;
+      div.nav-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        a {
+          padding: 0.75rem;
+          text-decoration: none;
+          color: white;
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+          }
         }
       }
-      div.select-language {
-        display: none;
-        position: absolute;
-        flex-direction: column;
-        row-gap: 0.5rem;
-        border: 1px black solid;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 0.5rem;
-        background-color: rgba(0, 0, 0, 0.1);
+
+      div.languages {
+        position: relative;
         span {
-          padding: 0rem 1rem;
-          cursor: pointer;
+          font-size: 1.5rem;
+        }
+        > span {
+          padding: 0.5rem 1rem;
+        }
+
+        &:hover {
+          div.select-language {
+            display: flex;
+          }
+        }
+        div.select-language {
+          display: none;
+          position: absolute;
+          flex-direction: column;
+          row-gap: 0.5rem;
+          border: 1px black solid;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 0.5rem;
+          background-color: rgba(0, 0, 0, 0.1);
+          span {
+            padding: 0rem 1rem;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -784,6 +715,17 @@ div.profile {
   div.profile {
     width: 50%;
   }
+  div.nav {
+    div.right {
+      padding-right: 1rem;
+    }
+    div.left {
+      padding-left: 1rem;
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -802,9 +744,56 @@ div.profile {
   div.information {
     width: 90%;
   }
+  div.nav {
+    div.right {
+      div.navigation {
+        a {
+          padding: 0.75rem;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  div.nav {
+    div.right {
+      position: relative;
+      width: 0;
+      button.hamburger {
+        display: inherit;
+        padding: 15px 0 15px 15px;
+      }
+      div.navigation {
+        display: none;
+        position: absolute;
+        flex-direction: row-reverse;
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: -2px 2px 4px 0 black;
+        z-index: 3;
+        right: 0;
+        bottom: 0;
+        transform: translateY(100%);
+        align-items: flex-start;
+        &.is-active {
+          display: flex;
+        }
+        div.nav-list {
+          flex-direction: column;
+          a {
+            font-size: 1.5rem;
+            padding: 1rem;
+          }
+        }
+        div.languages {
+          padding: 0.5rem 1rem;
+          span {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
   div.profile {
     width: 90%;
     margin: 1rem;

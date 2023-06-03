@@ -62,9 +62,9 @@ div.carousel-item {
   h3 {
     position: absolute;
     font-size: 150%;
-    left: 2rem;
-    bottom: 2rem;
-    // transform: translate(-50%, -50%);
+    left: 0;
+    bottom: 0;
+    padding: 2rem;
     z-index: 3;
     margin: 0;
   }
