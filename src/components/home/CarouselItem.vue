@@ -12,15 +12,18 @@ const props = defineProps({
 <template>
   <Transition :name="`slide-in-${props.total}-${props.index}`">
     <div class="carousel-item" v-show="currentSlide === index">
-      <!-- <router-link :to="`/${props.slide.link}`" target="_blank"> -->
       <router-link v-if="!props.slide.external" :to="`/${props.slide.link}`">
         <!-- <img class="border" src="@/assets/images/fotoborder.png" alt="" /> -->
         <img class="main-image" :src="props.slide.url" />
-        <h3 v-if="props.slide.title">{{ props.slide.title }}</h3>
+        <div class="carousel-title" v-if="props.slide.title">
+          <h3>{{ props.slide.title }}</h3>
+        </div>
       </router-link>
       <a v-else :href="props.slide.link">
         <img class="main-image" :src="props.slide.url" />
-        <h3 v-if="props.slide.title">{{ props.slide.title }}</h3>
+        <div class="carousel-title" v-if="props.slide.title">
+          <h3>{{ props.slide.title }}</h3>
+        </div>
       </a>
     </div>
   </Transition>
@@ -59,14 +62,20 @@ div.carousel-item {
     border: 4px solid black;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1);
   }
-  h3 {
+  div.carousel-title {
     position: absolute;
-    font-size: 150%;
     left: 0;
     bottom: 0;
     padding: 2rem;
     z-index: 3;
     margin: 0;
+    width: 100%;
+    border-radius: 0 0 2rem 2rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    h3 {
+      font-size: 150%;
+      margin: 0;
+    }
   }
 }
 

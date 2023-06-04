@@ -120,10 +120,9 @@ button.pause-button {
 div.carousel-container {
   display: flex;
   justify-content: center;
-  align-content: space-between;
-  flex-wrap: wrap;
-  height: 80vh;
+  flex-direction: column;
   width: 100%;
+  flex-grow: 1;
 }
 div.carousel {
   display: flex;
@@ -131,7 +130,7 @@ div.carousel {
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  height: 90%;
+  flex-grow: 1;
   width: 100%;
 
   div.move {

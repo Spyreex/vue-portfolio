@@ -8,7 +8,12 @@
 @use "sass:map";
 @import "@/assets/sass/theme-colors.scss";
 
+#app {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -20,6 +25,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
   font-size: 16px;
 }
 

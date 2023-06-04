@@ -40,11 +40,19 @@ const slides = [
 </script>
 
 <template>
-  <HeaderBlock></HeaderBlock>
-  <CarouselBlock :slides="slides"></CarouselBlock>
+  <div class="content">
+    <HeaderBlock></HeaderBlock>
+    <CarouselBlock :slides="slides"></CarouselBlock>
+  </div>
 </template>
 
 <style lang="scss" scoped>
+div.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 @media only screen and (orientation: landscape) and (max-height: 320px) {
   body,
   html {
