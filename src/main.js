@@ -144,7 +144,7 @@ const messages = {
       text: {
         present: "Heden",
         languages: "Talen",
-        and_frameworks: "en frameworks",
+        and_frameworks: " en frameworks",
         optional: "Keuzedelen",
         unfinished: "Niet afgerond",
       },
