@@ -41,6 +41,8 @@ body {
       rgba(255, 255, 255, 1) 0,
       rgba(0, 0, 0, 0.5) 100%
     );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-blend-mode: multiply, multiply;
 }
 

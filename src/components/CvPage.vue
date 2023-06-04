@@ -787,8 +787,11 @@ div.profile {
         }
         div.languages {
           padding: 0.5rem 1rem;
+          div.select-language {
+            row-gap: 1rem;
+          }
           span {
-            font-size: 1.5rem;
+            font-size: 2.5rem;
           }
         }
       }

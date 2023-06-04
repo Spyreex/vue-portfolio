@@ -24,13 +24,13 @@ div.carousel-indicators {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10%;
-  column-gap: 0.3rem;
+  padding: 1rem;
+  column-gap: 0.5rem;
   z-index: 3;
 
   button.carousel-button {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
     border: none;
     background-color: black;
     opacity: 0.25;
